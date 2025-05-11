@@ -1,0 +1,26 @@
+{
+    "name": "callmeaf/notification",
+    "description": "Manage Notifications",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Callmeaf\\Notification\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "callmeaf",
+            "email": "alikhoshkar2000@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Callmeaf\\Notification\\CallmeafNotificationServiceProvider"
+            ]
+        }
+    }
+}
