@@ -20,7 +20,7 @@ class NotificationRepo extends BaseRepo implements NotificationRepoInterface
         $authUser = $this->authUser();
         $authUser->unreadNotifications->markAsRead();
 
-        return $this->toResourceCollection($authUser->notifications);
+        return $this->toResourceCollection($authUser->notifications()->with('sender')->get());
     }
 
     public function read(string $id)
@@ -31,7 +31,7 @@ class NotificationRepo extends BaseRepo implements NotificationRepoInterface
         $notification = $this->authUser()->unreadNotifications()->findOrFail($id);
         $notification->markAsRead();
 
-        return $this->toResource($notification);
+        return $this->toResource($notification->loadMissing('sender'));
     }
 
     /**

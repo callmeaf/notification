@@ -7,7 +7,6 @@ use Callmeaf\Base\App\Http\Controllers\Api\V1\ApiController;
 use Callmeaf\Notification\App\Repo\Contracts\NotificationRepoInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Routing\Controllers\Middleware;
 
 class NotificationController extends ApiController implements HasMiddleware
 {
@@ -33,7 +32,7 @@ class NotificationController extends ApiController implements HasMiddleware
          */
         $user = $this->request->user();
         $notificationsIds = $user->notifications()->pluck('id')->toArray();
-        return $this->notificationRepo->builder(fn(Builder $query) => $query->whereIn('id',$notificationsIds))->latest()->search()->paginate();
+        return $this->notificationRepo->builder(fn(Builder $query) => $query->whereIn('id',$notificationsIds)->with('sender'))->latest()->search()->paginate();
     }
 
     /**
@@ -49,7 +48,7 @@ class NotificationController extends ApiController implements HasMiddleware
      */
     public function show(string $id)
     {
-        return $this->notificationRepo->findById(value: $id);
+        return $this->notificationRepo->builder(fn(Builder $query) => $query->with('sender'))->findById(value: $id);
     }
 
     /**
