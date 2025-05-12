@@ -23,7 +23,7 @@ class NotificationResource extends JsonResource
             'type' => $this->type,
 //            'notifiable_type' => $this->notifiable_type,
 //            'notifiable_id' => $this->notifiable_id,
-            'data' => $this->data,
+            'data_json' => $this->data,
             'read_at' => $this->read_at,
             'read_at_text' => $this->readAtText(),
             'created_at' => $this->created_at,
