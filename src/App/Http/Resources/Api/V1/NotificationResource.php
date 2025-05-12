@@ -2,6 +2,7 @@
 
 namespace Callmeaf\Notification\App\Http\Resources\Api\V1;
 
+use Callmeaf\Base\App\Enums\DateTimeFormat;
 use Callmeaf\Notification\App\Models\Notification;
 use Callmeaf\User\App\Repo\Contracts\UserRepoInterface;
 use Illuminate\Http\Request;
@@ -31,11 +32,11 @@ class NotificationResource extends JsonResource
 //            'notifiable_id' => $this->notifiable_id,
             'data_json' => $this->data,
             'read_at' => $this->read_at,
-            'read_at_text' => $this->readAtText(),
+            'read_at_text' => $this->readAtText(DateTimeFormat::DATE_TIME),
             'created_at' => $this->created_at,
-            'created_at_text' => $this->createdAtText(),
+            'created_at_text' => $this->createdAtText(DateTimeFormat::DATE_TIME),
             'updated_at' => $this->updated_at,
-            'updated_at_text' => $this->updatedAtText(),
+            'updated_at_text' => $this->updatedAtText(DateTimeFormat::DATE_TIME),
             'deleted_at' => $this->deleted_at,
             'deleted_at_text' => $this->deletedAtText(),
             'sender' => $userRepo->toResource($this->whenLoaded('sender')),

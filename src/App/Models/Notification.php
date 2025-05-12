@@ -51,7 +51,7 @@ class Notification extends BaseNotificationModel
         return $this->belongsTo($userRepo->getModel()::class,'sender_id');
     }
 
-    public function readAtText(DateTimeFormat $format = DateTimeFormat::DATE_TIME)
+    public function readAtText(DateTimeFormat $format = DateTimeFormat::DATE)
     {
         return match (app()->currentLocale()) {
             'fa' => verta($this->read_at)->format($format->value),
