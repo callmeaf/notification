@@ -54,8 +54,8 @@ class Notification extends BaseNotificationModel
     public function readAtText(DateTimeFormat $format = DateTimeFormat::DATE)
     {
         return match (app()->currentLocale()) {
-            'fa' => verta($this->read_at)->format($format->value),
-            default => $this->read_at?->format($format->value),
+            'fa' => $this->read_at ? verta($this->read_at)->format($format->value) : null,
+            default => $this->read_at ? $this->read_at?->format($format->value) : null,
         };
     }
 }
