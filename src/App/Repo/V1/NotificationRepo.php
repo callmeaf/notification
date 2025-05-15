@@ -18,9 +18,10 @@ class NotificationRepo extends BaseRepo implements NotificationRepoInterface
     public function allRead()
     {
         $authUser = $this->authUser();
-        $authUser->unreadNotifications->markAsRead();
+        $unreadNotifications = $authUser->unreadNotifications;
+        $unreadNotifications->markAsRead();
 
-        return $this->toResourceCollection($authUser->notifications()->with('sender')->get());
+        return $this->toResourceCollection($unreadNotifications);
     }
 
     public function read(string $id)
