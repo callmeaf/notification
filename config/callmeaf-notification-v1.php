@@ -184,4 +184,7 @@ return [
              'excel' => \Callmeaf\Notification\App\Imports\Admin\V1\NotificationsImport::class,
          ],
      ],
+    'notifications_without_sender_id' => [
+        \Callmeaf\Ticket\App\Notifications\Api\V1\TicketCreatedNotification::class,
+    ],
 ];
